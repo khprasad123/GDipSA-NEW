@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Day4Exercise_Starting.Day4_exercise_Matrix_Mult</StartupObject>
+    <StartupObject>Day4Exercise_Starting.Day4_exercise_G_4_Student_Mark</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Day4_exercise_G_4_Student_Mark.cs" />
     <Compile Include="Day4_exercise_Matrix_Mult.cs" />
     <Compile Include="Day5_Quiz.cs" />
     <Compile Include="Program.cs" />

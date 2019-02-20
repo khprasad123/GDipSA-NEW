@@ -77,7 +77,7 @@ namespace Day4Exercise_Starting
             {
                  for(int j = 0; j < A.GetLength(1); j++)
                 {
-                    Console.Write("   " + A[i, j]);
+                    Console.Write(" \t" + A[i, j]);
                 }
                 Console.Write("\n\n");
             }
