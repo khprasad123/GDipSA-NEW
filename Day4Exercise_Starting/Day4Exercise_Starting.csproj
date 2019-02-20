@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Day4Exercise_Starting.Day5_Quiz</StartupObject>
+    <StartupObject>Day4Exercise_Starting.Day4_exercise_Matrix_Mult</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
