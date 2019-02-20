@@ -16,15 +16,14 @@ namespace Day4Exercise_Starting
 
         static int ReadInteger()
         {
-            bool F = true;
-            while (F)
+            
+            while (true)
             {
                 Console.Write("Enter an Integer : ");
                 var num =int.TryParse( Console.ReadLine(),out int n);
                 if (num)
                     return n;
             }
-            return 0;
         }
     }
 }
