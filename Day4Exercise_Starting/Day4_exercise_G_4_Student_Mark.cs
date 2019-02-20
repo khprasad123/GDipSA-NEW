@@ -16,12 +16,11 @@ namespace Day4Exercise_Starting
             int nSubject = int.Parse(Console.ReadLine());
             
             int[,] Report = getArray(nStudent, nSubject);
-            PrintMatrix(Report);
             getCalc(Report);
            
 
         }
-        static int[,] getArray(int nStudent,int nSubject)
+        static int[,] getArray(int nStudent,int nSubject) //FOR INPUTIINF THE ITEMS
         {   
             int[,] A = new int[nStudent, nSubject];
             for(int i = 0; i < nStudent; i++)
@@ -35,49 +34,74 @@ namespace Day4Exercise_Starting
             PrintMatrix(A);
             return A;
         }
-        static void getCalc(int[,] Report)
-        {
-            int[] SubAvg = new int[Report.GetLength(1)];
-            for (int i = 0; i < Report.GetLength(0); i++)
-            {
-                int sum = 0;
-                for (int j = 0; j < Report.GetLength(1); j++)
-                {
-                    sum += Report[i, j];
-                    SubAvg[j] += Report[i, j]; //calculate sum of wach subject
-                }
-               
-                Console.Write("Student " + (i + 1) + " total Marks : " + sum + "\t");
-                Console.Write("Average Marks : " + (sum / (Report.GetLength(1))) + "\n\n\n");
-            }
 
-            for(int i = 0; i < SubAvg.Length; i++)
-            {
-                Console.Write("Subject " + (i + 1) + " : Average Marks : " + (SubAvg[i]/Report.GetLength(0))+ "\t"); //will find the avg of each subject
-                //total sum of each sub mark /total number of students
-            }
-            Console.WriteLine();
-            
+        static void getCalc(int[,] Report)//ALL THE CALCULATIONS WILL DONE HERE
+        {
+            //FOR NORMAL OUTPUT
+            double[] SubAvg = new double[Report.GetLength(1)];
+            avgOutput(ref Report, ref SubAvg);
+            //FOR EACH SUbJECT AVERAGE AND STANDARD DEVIATIOn
+            stDeviation(ref Report,ref SubAvg);
         }
         static void PrintMatrix(int[,] A)
         {
-            Console.Write("\t\t");
-            for(int k = 0; k <A.GetLength(1); k++)
+            
+            Console.Write("Student".PadRight(10, ' '));
+
+            for (int k = 0; k <A.GetLength(1); k++)
             {
-                Console.Write("Sub" + (k + 1) + "\t");
+                Console.Write("Sub" + (k + 1).ToString().PadRight(10,' '));
             }
-            Console.WriteLine();
+            Console.WriteLine("\n");
+
             for (int i = 0; i < A.GetLength(0); i++)
             {
-                Console.Write("Student " + (i + 1));
+                Console.Write((i + 1).ToString().PadRight(10,' '));
                 for (int j = 0; j < A.GetLength(1); j++)
                 {
-                    Console.Write(" \t" + A[i, j]);
+                    Console.Write(A[i, j].ToString().PadRight(10,' '));
                 }
                 Console.Write("\n\n");
             }
         }
 
+
+        static void avgOutput( ref int [,] Report,ref double[] SubAvg)
+        {
+            Console.WriteLine("Student".PadRight(10, ' ') + "Total".PadRight(10, ' ') + "Avg".PadRight(10, ' '));
+            for (int i = 0; i < Report.GetLength(0); i++)
+            {
+                double sum = 0;
+                for (int j = 0; j < Report.GetLength(1); j++)
+                {
+                    sum += Report[i, j];
+                    SubAvg[j] += Report[i, j]; //calculate sum of each subject PUT IT AN ARRAY
+                }
+                //PRINTING THE TOTAL AND AVERAGE
+                Console.Write((i + 1).ToString().PadRight(10,' ') + sum.ToString().PadRight(10,' '));
+                Console.Write(Math.Round(sum / (Report.GetLength(1))) + "\n\n\n");
+            }
+        }
+
+        static void stDeviation(ref int[,] Report,ref double[] SubAvg)
+        {
+            double[] Avg = new double[Report.GetLength(1)];
+            double SumOfx_m_square = 0, variance;
+            Console.WriteLine("Subject".PadRight(10, ' ')+"Avg Mark".PadRight(10,' ')+"StdDev".PadRight(10,' '));
+            for (int i = 0; i < SubAvg.Length; i++)
+            {
+                Avg[i] = SubAvg[i] / (Report.GetLength(0));
+                Console.Write((i + 1).ToString().PadRight(10,' ') +Math.Round(Avg[i],4).ToString().PadRight(10,' ')); //will find the avg of each subject
+                for (int k = 0; k < Report.GetLength(0); k++)
+                {
+                        SumOfx_m_square += Math.Pow((Report[k, i] - Avg[i]), 2);   ///
+                }
+                variance = SumOfx_m_square / Report.GetLength(0);
+                //Console.WriteLine(" Varience for Subject " + (i + 1) + " is " + variance + "\n\n");
+                Console.Write(Math.Round(Math.Sqrt(variance),4).ToString().PadRight(10,' ')+"\n");
+            }
+            Console.WriteLine("\n\n");
+        }
 
     }
 }
